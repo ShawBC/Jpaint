@@ -1,0 +1,24 @@
+Program: Jpaint
+Author: Joel Moore
+License: GPLv3
+Version: 1.3
+
+Desciption
+
+Jpaint is a simple paint program written in python with pygame.
+
+Controls
+
+Draw: left mouse button
+Erase: right mouse button
+Save image: s *
+Load image: l **
+Left arrow: color red
+Up arrow: color green
+Right arrow: color blue
+Down arrow: color black
+Credits: c
+
+* As of this version images will be saved in the same directory as Jpaint
+
+** As of this version images will be loaded from the same directory as Jpaint
