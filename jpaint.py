@@ -1,6 +1,10 @@
+# Program: Jpaint
+# Author: Joel Moore
+# License: GPLv3
+# Version: 1.3
+
 import pygame
 from pygame.locals import *
-
 pygame.init()
 
 white = (255,255,255)
@@ -17,10 +21,12 @@ color = black
 (rx,ry) = (0,25)
 (gx,gy) = (0,60)
 (bx,by) = (0,95)
+fileType = '.jpg'
+pygame.mouse.set_cursor(*pygame.cursors.broken_x)
 
 screen = pygame.display.set_mode((640,480))
 pygame.display.set_caption("Jpaint")
-screen.fill(white);
+screen.fill(white)
 
 while go == True:
     for event in pygame.event.get():
@@ -33,14 +39,6 @@ while go == True:
 				color = green
 			if event.key == pygame.K_RIGHT:
 				color = blue
-			if event.key == pygame.K_f:
-				radius = 40
-				screen = pygame.display.set_mode((1020,760), FULLSCREEN)
-				screen.fill(white)
-			if event.key == K_d:
-				radius = 25
-				screen = pygame.display.set_mode((640,480))
-				screen.fill(white)
 			if event.key == K_c:
 				screen.fill(white)
 				font = pygame.font.Font(None, 100)
@@ -49,6 +47,17 @@ while go == True:
 				textpos.centerx = screen.get_rect().centerx
 				textpos.centery = screen.get_rect().centery
 				screen.blit(text, textpos)
+			if event.key == K_s:
+				saveName = raw_input('Save file: ')
+				pygame.image.save(screen,saveName + fileType)
+			if event.key == K_l:
+				loadName = raw_input('Load file: ')
+				userImage = pygame.sprite.Sprite()
+				userImage.image = pygame.image.load(loadName + fileType).convert()
+				userImage.rect = userImage.image.get_rect()
+				userImage.rect.center = (640/2,481/2)
+				screen.blit(userImage.image, userImage.rect)
+				pygame.display.update()
 				
 		if pygame.mouse.get_pressed() == (1,0,0):
 			(x,y) = pygame.mouse.get_pos()
